@@ -1,0 +1,116 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  overflow: hidden;
+}
+.game {
+  grid-template-columns: repeat(3, 10vw);
+  grid-template-rows: repeat(3, 15vh);
+}
+.customfont
+{
+  font-size: 56px;
+  color: black;
+}
+.carousel
+{
+  top:-16px;
+}
+.carousel-inner
+{
+  top: 4px;
+}
+.carousel-control
+{
+  top: -16px;
+}
+
+@media screen and (max-width: 730px) {
+  .game {
+    grid-template-columns: repeat(3, 16vw);
+  }
+}
+.box {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.box:hover {
+  cursor: pointer;
+  background-color: #d0d8d9;
+}
+
+.maindiv {
+  background-color: #2e2922;
+}
+
+.subdiv {
+  background-color: silver;
+  border-radius: 22px;
+  min-width: 300px;
+}
+#reset:hover
+{
+    color: red !important;
+}
+#reset:focus
+{
+    box-shadow: none !important;
+}
+
+#tic {
+  animation: tic 2s linear 1;
+}
+@keyframes tic {
+  from {
+    margin-left: -60vw;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+#tac {
+  animation: tac 2s linear 1;
+}
+@keyframes tac {
+  0% {
+    margin-top: -60vh;
+    
+  }
+  85% {
+
+    margin-top: 0;
+    
+  }
+}
+#toe {
+  animation: toe 2s linear 1;
+}
+@keyframes toe {
+  from {
+    margin-right: -60vw;
+  }
+  to {
+    margin-right: 0vw;
+  }
+}
+.winner
+{
+  animation: blink 1s linear infinite ;
+  
+}
+
+@keyframes blink
+{
+from {
+color: transparent;
+}
+to {
+color: black;
+}
+}
