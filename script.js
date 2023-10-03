@@ -1,4 +1,3 @@
-// Self Logic
 // Computer Logic
 function VScomp() {
     var Boxes = document.querySelectorAll('.box')
@@ -154,5 +153,4 @@ function VSplayer() {
         })
     })
 }
-
 
