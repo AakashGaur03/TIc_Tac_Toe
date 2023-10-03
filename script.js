@@ -10,12 +10,12 @@ function VScomp() {
 
     Boxes.forEach(box => {
         box.addEventListener('click', () => {
+            checkWins()
             if (box.innerHTML == "" && !gameover) {
 
                 box.innerHTML = a
-                checkWins()
-                compchoice()
 
+                compchoice()
                 if (gameover) {
                     Boxes.forEach((box) => {
                         box.style.cursor = "not-allowed"
@@ -33,12 +33,18 @@ function VScomp() {
             if (Boxes[i[0]].innerHTML == Boxes[i[1]].innerHTML && Boxes[i[1]].innerHTML == Boxes[i[2]].innerHTML && Boxes[i[0]].innerHTML != "") {
                 info.innerText = `${Boxes[i[0]].innerHTML} Won`
                 gameover = true
+
                 i.forEach(y => {
                     Boxes[y].classList.add("winner")
                 })
-
             }
         })
+        // Check for draw
+        var isDraw = Array.from(Boxes).every(box => box.innerHTML !== "" && !gameover);
+        if (isDraw) {
+            gameover = true;
+            info.innerText = "It's a Draw!";
+        }
     }
     reset.addEventListener('click', () => {
         Boxes.forEach(box => {
@@ -46,11 +52,17 @@ function VScomp() {
             gameover = false
             a = "X"
             info.innerText = `Player X Turn`
-            Boxes.forEach((box) => {
-                box.classList.remove("winner")
-                box.style.cursor = "pointer"
-            })
+            box.classList.remove("winner")
+            box.style.cursor = "pointer"
+
+            if (box && box.parentNode) {
+                var clonedElement = box.cloneNode(true);
+                box.parentNode.replaceChild(clonedElement, box);
+            }
+
+
         })
+
     })
 
     function compchoice() {
@@ -118,6 +130,12 @@ function VSplayer() {
                 })
             }
         })
+        // Check for draw
+        var isDraw = Array.from(Boxes).every(box => box.innerHTML !== "" && !gameover);
+        if (isDraw) {
+            gameover = true;
+            info.innerText = "It's a Draw!";
+        }
     }
     reset.addEventListener('click', () => {
         Boxes.forEach(box => {
@@ -125,10 +143,16 @@ function VSplayer() {
             gameover = false
             a = "O"
             info.innerText = `X Turn`
-            Boxes.forEach((box) => {
-                box.classList.remove("winner")
-                box.style.cursor = "pointer"
-            })
+
+            box.classList.remove("winner")
+            box.style.cursor = "pointer"
+            if (box && box.parentNode) {
+                var clonedElement = box.cloneNode(true);
+                box.parentNode.replaceChild(clonedElement, box);
+            }
+
         })
     })
 }
+
+
