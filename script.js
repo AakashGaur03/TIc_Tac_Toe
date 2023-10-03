@@ -1,20 +1,23 @@
+
 // Computer Logic
 function VScomp() {
     var Boxes = document.querySelectorAll('.box')
     var info = document.getElementById('info')
     let reset = document.getElementById('reset')
+    let delete1 = document.getElementById('delete1')
     var a = "X"
     let gameover = false
     info.innerText = `Player X Turn`
 
     Boxes.forEach(box => {
         box.addEventListener('click', () => {
-            checkWins()
+            
             if (box.innerHTML == "" && !gameover) {
 
                 box.innerHTML = a
-
+                checkWins()
                 compchoice()
+                checkWins()
                 if (gameover) {
                     Boxes.forEach((box) => {
                         box.style.cursor = "not-allowed"
@@ -53,6 +56,19 @@ function VScomp() {
             info.innerText = `Player X Turn`
             box.classList.remove("winner")
             box.style.cursor = "pointer"
+            VScomp()
+        })
+
+    })
+
+    delete1.addEventListener('click', () => {
+        Boxes.forEach(box => {
+            box.innerHTML = ""
+            gameover = false
+            a = "X"
+            info.innerText = `Player X Turn`
+            box.classList.remove("winner")
+            box.style.cursor = "pointer"
 
             if (box && box.parentNode) {
                 var clonedElement = box.cloneNode(true);
@@ -65,20 +81,28 @@ function VScomp() {
     })
 
     function compchoice() {
-        if (!gameover) {
-            let flag = false;
 
-            while (!flag) {
-                let nums = Math.floor(Math.random() * 8);
-                let box = Boxes[nums];
+        setTimeout(() => {
 
-                if (box.innerHTML === "") {
-                    box.innerHTML = "O";
-                    flag = true;
-                    checkWins();
+
+
+            if (!gameover) {
+                let flag = false;
+
+                while (!flag) {
+                    let nums = Math.floor(Math.random() * 8);
+                    let box = Boxes[nums];
+
+                    if (box.innerHTML === "") {
+                        box.innerHTML = "O";
+                        flag = true;
+                        checkWins();
+                    }
                 }
             }
-        }
+
+        }, 1000);
+
     }
 }
 
@@ -145,6 +169,20 @@ function VSplayer() {
 
             box.classList.remove("winner")
             box.style.cursor = "pointer"
+            VSplayer()
+
+        })
+    })
+
+    delete1.addEventListener('click', () => {
+        Boxes.forEach(box => {
+            box.innerHTML = ""
+            gameover = false
+            a = "O"
+            info.innerText = `X Turn`
+
+            box.classList.remove("winner")
+            box.style.cursor = "pointer"
             if (box && box.parentNode) {
                 var clonedElement = box.cloneNode(true);
                 box.parentNode.replaceChild(clonedElement, box);
@@ -152,5 +190,8 @@ function VSplayer() {
 
         })
     })
+
+
 }
+
 
