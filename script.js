@@ -1,6 +1,17 @@
 
-// Computer Logic
+let vscomp = document.getElementById('VScomp');
+let vsplayer = document.getElementById('VSplayer');
+let deleteofplayer = true
+let deleteofcomp = true
 function VScomp() {
+
+    if (deleteofcomp || deleteofplayer) {
+        vsplayer.classList.remove('active');
+        vscomp.classList.add('active');
+    }
+    deleteofplayer = false
+    deleteofcomp = false
+
     var Boxes = document.querySelectorAll('.box')
     var info = document.getElementById('info')
     let reset = document.getElementById('reset')
@@ -11,7 +22,7 @@ function VScomp() {
 
     Boxes.forEach(box => {
         box.addEventListener('click', () => {
-            
+
             if (box.innerHTML == "" && !gameover) {
 
                 box.innerHTML = a
@@ -49,6 +60,7 @@ function VScomp() {
         }
     }
     reset.addEventListener('click', () => {
+        deleteofplayer = true
         Boxes.forEach(box => {
             box.innerHTML = ""
             gameover = false
@@ -62,6 +74,9 @@ function VScomp() {
     })
 
     delete1.addEventListener('click', () => {
+        deleteofcomp = true
+        vscomp.classList.remove('active');
+        vsplayer.classList.remove('active');
         Boxes.forEach(box => {
             box.innerHTML = ""
             gameover = false
@@ -101,29 +116,38 @@ function VScomp() {
                 }
             }
 
-        }, 1000);
+        }, 100);
 
     }
 }
 
 // // VS player Logic
 function VSplayer() {
+
+    if (deleteofcomp || deleteofplayer) {
+        vscomp.classList.remove('active');
+        vsplayer.classList.add('active');
+    }
+
+    deleteofplayer = false
+    deleteofcomp = false
+
     let Boxes = document.querySelectorAll('.box')
     let info = document.getElementById('info')
     let reset = document.getElementById('reset')
     var a = "O"
     let gameover = false
-    info.innerText = `X Turn`
+    info.innerText = `Player X Turn`
 
     Boxes.forEach(box => {
         box.addEventListener('click', () => {
             if (box.innerHTML == "" && !gameover) {
                 if (a === "O") {
-                    info.innerText = `${a} Turn`
+                    info.innerText = `Player  ${a} Turn`
                     a = "X"
                 }
                 else if (a === "X") {
-                    info.innerText = `${a} Turn`
+                    info.innerText = `Player  ${a} Turn`
                     a = "O"
                 }
                 box.innerHTML = a
@@ -161,6 +185,7 @@ function VSplayer() {
         }
     }
     reset.addEventListener('click', () => {
+        deleteofcomp = true
         Boxes.forEach(box => {
             box.innerHTML = ""
             gameover = false
@@ -175,6 +200,10 @@ function VSplayer() {
     })
 
     delete1.addEventListener('click', () => {
+        deleteofplayer = true
+
+        vscomp.classList.remove('active');
+        vsplayer.classList.remove('active');
         Boxes.forEach(box => {
             box.innerHTML = ""
             gameover = false
