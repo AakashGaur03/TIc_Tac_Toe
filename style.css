@@ -114,3 +114,20 @@ to {
 color: black;
 }
 }
+
+#delete1:hover
+{
+  cursor: pointer;
+  color: red;
+}
+
+
+.btn:focus {
+    box-shadow: none;
+}
+.active
+{
+  border: 2px solid black;
+    border-radius: 20px;
+    background-color: darkgrey;
+  }
