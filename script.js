@@ -1,3 +1,5 @@
+// Self Logic
+// Computer Logic
 
 let vscomp = document.getElementById('VScomp');
 let vsplayer = document.getElementById('VSplayer');
